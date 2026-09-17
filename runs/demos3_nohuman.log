@@ -1,0 +1,29 @@
+reward: learned classifier, tau=0.20, side_check=True
+interventions: False
+
+demo buffer: 103 transitions from 3 demonstrations
+step   1000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 1000 | 10s
+step   2000 | eval true success 0.00 | classifier says 0.03 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 2000 | 27s
+step   3000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 3000 | 45s
+step   4000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 4000 | 63s
+step   5000 | eval true success 0.00 | classifier says 0.03 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 5000 | 80s
+step   6000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 6000 | 97s
+step   7000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 7000 | 114s
+step   8000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 8000 | 132s
+step   9000 | eval true success 0.27 | classifier says 0.27 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 9000 | 149s
+step  10000 | eval true success 0.47 | classifier says 0.47 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 10000 | 166s
+step  11000 | eval true success 0.57 | classifier says 0.63 | false-pos gap +0.07 | intervention rate 0.00 | rl_buf 11000 | 181s
+step  12000 | eval true success 0.30 | classifier says 0.30 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 12000 | 197s
+step  13000 | eval true success 0.67 | classifier says 0.67 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 13000 | 214s
+step  14000 | eval true success 0.47 | classifier says 0.47 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 14000 | 230s
+step  15000 | eval true success 0.90 | classifier says 0.90 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 15000 | 246s
+step  16000 | eval true success 0.97 | classifier says 1.00 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 16000 | 262s
+step  17000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 17000 | 278s
+step  18000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 18000 | 295s
+step  19000 | eval true success 0.57 | classifier says 0.57 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 19000 | 313s
+step  20000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 20000 | 332s
+
+final eval (mean of last 3 checkpoints, 90 episodes, no human): true success 0.86, classifier says 0.86
+
+final 50 training episodes: true success 0.96, intervention rate 0.00
+log -> /Users/fredericazhao/Desktop/practice/RL/runs/demos3_nohuman.csv

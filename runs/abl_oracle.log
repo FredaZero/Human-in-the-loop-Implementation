@@ -1,0 +1,39 @@
+reward: GROUND TRUTH (ablation upper bound)
+interventions: True
+
+demo buffer: 664 transitions from 20 demonstrations
+step   1000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.94 | rl_buf 1000 | 13s
+step   2000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.87 | rl_buf 2000 | 36s
+step   3000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.79 | rl_buf 3000 | 57s
+step   4000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.73 | rl_buf 4000 | 80s
+step   5000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.73 | rl_buf 5000 | 102s
+step   6000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.66 | rl_buf 6000 | 125s
+step   7000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.59 | rl_buf 7000 | 152s
+step   8000 | eval true success 0.13 | classifier says 0.13 | false-pos gap +0.00 | intervention rate 0.42 | rl_buf 8000 | 179s
+step   9000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.39 | rl_buf 9000 | 206s
+step  10000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.36 | rl_buf 10000 | 234s
+step  11000 | eval true success 0.53 | classifier says 0.53 | false-pos gap +0.00 | intervention rate 0.17 | rl_buf 11000 | 259s
+step  12000 | eval true success 0.03 | classifier says 0.03 | false-pos gap +0.00 | intervention rate 0.19 | rl_buf 12000 | 287s
+step  13000 | eval true success 0.73 | classifier says 0.73 | false-pos gap +0.00 | intervention rate 0.19 | rl_buf 13000 | 314s
+step  14000 | eval true success 0.43 | classifier says 0.43 | false-pos gap +0.00 | intervention rate 0.11 | rl_buf 14000 | 338s
+step  15000 | eval true success 0.83 | classifier says 0.83 | false-pos gap +0.00 | intervention rate 0.17 | rl_buf 15000 | 362s
+step  16000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.19 | rl_buf 16000 | 387s
+step  17000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.15 | rl_buf 17000 | 412s
+step  18000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.20 | rl_buf 18000 | 437s
+step  19000 | eval true success 0.93 | classifier says 0.93 | false-pos gap +0.00 | intervention rate 0.11 | rl_buf 19000 | 462s
+step  20000 | eval true success 0.13 | classifier says 0.13 | false-pos gap +0.00 | intervention rate 0.12 | rl_buf 20000 | 487s
+step  21000 | eval true success 0.77 | classifier says 0.77 | false-pos gap +0.00 | intervention rate 0.15 | rl_buf 21000 | 512s
+step  22000 | eval true success 0.73 | classifier says 0.73 | false-pos gap +0.00 | intervention rate 0.08 | rl_buf 22000 | 538s
+step  23000 | eval true success 0.30 | classifier says 0.30 | false-pos gap +0.00 | intervention rate 0.15 | rl_buf 23000 | 564s
+step  24000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.12 | rl_buf 24000 | 589s
+step  25000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.19 | rl_buf 25000 | 615s
+step  26000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.07 | rl_buf 26000 | 640s
+step  27000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.17 | rl_buf 27000 | 664s
+step  28000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.12 | rl_buf 28000 | 688s
+step  29000 | eval true success 0.93 | classifier says 0.93 | false-pos gap +0.00 | intervention rate 0.15 | rl_buf 29000 | 712s
+step  30000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.12 | rl_buf 30000 | 736s
+
+final eval (mean of last 3 checkpoints, 90 episodes, no human): true success 0.98, classifier says 0.98
+
+final 50 training episodes: true success 1.00, intervention rate 0.14
+log -> /Users/fredericazhao/Desktop/practice/RL/runs/abl_oracle.csv

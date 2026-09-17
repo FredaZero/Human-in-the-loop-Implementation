@@ -1,0 +1,39 @@
+reward: learned classifier, tau=0.20, side_check=True
+interventions: False
+
+demo buffer: 664 transitions from 20 demonstrations
+step   1000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 1000 | 15s
+step   2000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 2000 | 40s
+step   3000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 3000 | 65s
+step   4000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 4000 | 92s
+step   5000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 5000 | 119s
+step   6000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 6000 | 150s
+step   7000 | eval true success 0.00 | classifier says 0.03 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 7000 | 181s
+step   8000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 8000 | 213s
+step   9000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 9000 | 244s
+step  10000 | eval true success 0.47 | classifier says 0.47 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 10000 | 274s
+step  11000 | eval true success 0.80 | classifier says 0.83 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 11000 | 303s
+step  12000 | eval true success 0.90 | classifier says 0.97 | false-pos gap +0.07 | intervention rate 0.00 | rl_buf 12000 | 329s
+step  13000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 13000 | 354s
+step  14000 | eval true success 0.87 | classifier says 1.00 | false-pos gap +0.13 | intervention rate 0.00 | rl_buf 14000 | 380s
+step  15000 | eval true success 0.93 | classifier says 0.97 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 15000 | 406s
+step  16000 | eval true success 0.97 | classifier says 0.97 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 16000 | 432s
+step  17000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 17000 | 458s
+step  18000 | eval true success 0.87 | classifier says 0.87 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 18000 | 484s
+step  19000 | eval true success 0.97 | classifier says 1.00 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 19000 | 510s
+step  20000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 20000 | 537s
+step  21000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 21000 | 564s
+step  22000 | eval true success 0.93 | classifier says 0.93 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 22000 | 590s
+step  23000 | eval true success 0.90 | classifier says 0.93 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 23000 | 618s
+step  24000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 24000 | 645s
+step  25000 | eval true success 0.80 | classifier says 0.97 | false-pos gap +0.17 | intervention rate 0.00 | rl_buf 25000 | 672s
+step  26000 | eval true success 0.77 | classifier says 0.80 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 26000 | 699s
+step  27000 | eval true success 0.93 | classifier says 0.97 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 27000 | 725s
+step  28000 | eval true success 0.97 | classifier says 0.97 | false-pos gap +0.00 | intervention rate 0.00 | rl_buf 28000 | 747s
+step  29000 | eval true success 0.87 | classifier says 1.00 | false-pos gap +0.13 | intervention rate 0.00 | rl_buf 29000 | 767s
+step  30000 | eval true success 0.97 | classifier says 1.00 | false-pos gap +0.03 | intervention rate 0.00 | rl_buf 30000 | 787s
+
+final eval (mean of last 3 checkpoints, 90 episodes, no human): true success 0.93, classifier says 0.99
+
+final 50 training episodes: true success 0.92, intervention rate 0.00
+log -> /Users/fredericazhao/Desktop/practice/RL/runs/abl_no-interv.csv
