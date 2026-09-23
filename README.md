@@ -329,6 +329,52 @@ few-labels            0.21             0.90  +0.69   ...............+.+.........
 - **no-interv** — see below. This one did not go the way I expected.
 
 
+### Why not just use stable-baselines3?
+
+Reasonable question, and the `sb3-sac` ablation answers it with a number rather
+than an argument. The baseline gets the same environment, the same learned
+reward classifier, the same 20 demonstrations pre-loaded into its buffer, and
+the same evaluation protocol.
+
+It is **not** a strawman. SB3 2.9 can express several of RLPD's ingredients and
+this baseline uses all of them:
+
+| | SB3 |
+|---|---|
+| 10-critic ensemble | `n_critics=10` |
+| temperature init 0.05 | `ent_coef="auto_0.05"` |
+| update-to-data ratio 4 | `gradient_steps=4` |
+| LayerNorm critics | needs a ~15-line subclass — `create_mlp` takes `post_linear_modules`, but `ContinuousCritic` never passes it and `SACPolicy` has no kwarg to forward. Included anyway, since LayerNorm is the one trick this README calls most important. |
+
+What it cannot express, because these are hardcoded inside `SAC.train()`:
+
+- **min over a random 2-of-10 subset.** SB3 does `th.min(next_q_values, dim=1)`
+  over *all* critics. Full-min across 10 is crushingly pessimistic.
+- **A no-entropy backup.** SB3 always computes
+  `next_q_values - ent_coef * next_log_prob`.
+- **An actor that maximises the ensemble mean.** SB3's actor uses `min_qf_pi`.
+- **50/50 symmetric sampling.** One `replay_buffer.sample(batch_size)` per step,
+  so 660 demo transitions fall to ~2% of a 30k-step buffer and get sampled into
+  irrelevance — exactly the problem symmetric sampling exists to solve.
+
+And two with no hook at all: **human interventions** (they live in the
+collection loop, so `collect_rollouts()` would need overriding too) and the
+**grasp critic** (SAC's action space is a Box, so the gripper becomes a third
+continuous dimension thresholded into `{stay, open, close}` — which is precisely
+the design HIL-SERL rejects).
+
+Override `train()` and `collect_rollouts()` and you have replaced all of SAC's
+logic while still inheriting the VecEnv, callback and features-extractor
+machinery. That is the argument for the ~200 hand-written lines in
+[agent.py](hil_serl/agent.py) and [networks.py](hil_serl/networks.py) — and it
+is worth noting the real HIL-SERL codebase (`rail-berkeley/serl`) is also
+written from scratch, in JAX/Flax, rather than on top of an RL library.
+
+Where SB3 is the better choice: any standard SAC problem, and any time you want
+tested code, logging, callbacks, vec envs and checkpointing for free. My 200
+lines have no test suite. The trade only favours writing it yourself when the
+algorithm stops being standard.
+
 ### When interventions help, and when they hurt
 
 `no-interv` reaching 0.93 against the full method's 0.98 is not what I expected,

@@ -1,0 +1,37 @@
+reward: learned classifier, tau=0.20, side_check=True
+demo buffer: 668 transitions from 20 demonstrations (single buffer - they dilute as it fills)
+interventions: False (SB3 has no hook for them)
+
+step   1000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 1667
+step   2000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 2667
+step   3000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 3667
+step   4000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 4667
+step   5000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 5667
+step   6000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 6667
+step   7000 | eval true success 0.00 | classifier says 0.00 | false-pos gap +0.00 | buffer 7667
+step   8000 | eval true success 0.07 | classifier says 0.07 | false-pos gap +0.00 | buffer 8667
+step   9000 | eval true success 0.10 | classifier says 0.13 | false-pos gap +0.03 | buffer 9667
+step  10000 | eval true success 0.30 | classifier says 0.63 | false-pos gap +0.33 | buffer 10667
+step  11000 | eval true success 0.03 | classifier says 0.03 | false-pos gap +0.00 | buffer 11667
+step  12000 | eval true success 0.93 | classifier says 0.93 | false-pos gap +0.00 | buffer 12667
+step  13000 | eval true success 0.90 | classifier says 0.90 | false-pos gap +0.00 | buffer 13667
+step  14000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 14667
+step  15000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 15667
+step  16000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 16667
+step  17000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 17667
+step  18000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 18667
+step  19000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 19667
+step  20000 | eval true success 0.90 | classifier says 1.00 | false-pos gap +0.10 | buffer 20667
+step  21000 | eval true success 0.90 | classifier says 0.97 | false-pos gap +0.07 | buffer 21667
+step  22000 | eval true success 1.00 | classifier says 0.97 | false-pos gap -0.03 | buffer 22667
+step  23000 | eval true success 0.97 | classifier says 0.93 | false-pos gap -0.03 | buffer 23667
+step  24000 | eval true success 0.97 | classifier says 0.97 | false-pos gap +0.00 | buffer 24667
+step  25000 | eval true success 0.97 | classifier says 0.90 | false-pos gap -0.07 | buffer 25667
+step  26000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 26667
+step  27000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 27667
+step  28000 | eval true success 0.97 | classifier says 0.97 | false-pos gap +0.00 | buffer 28667
+step  29000 | eval true success 1.00 | classifier says 1.00 | false-pos gap +0.00 | buffer 29667
+step  30000 | eval true success 0.97 | classifier says 0.97 | false-pos gap +0.00 | buffer 30667
+
+final eval (mean of last 3 checkpoints, no human): true success 0.98, classifier says 0.98
+log -> /Users/fredericazhao/Desktop/practice/RL/runs/abl_sb3-sac_eval.csv

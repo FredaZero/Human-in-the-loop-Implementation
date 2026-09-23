@@ -5,6 +5,8 @@
   oracle      perfect reward, human in the loop     -> upper bound
   few-labels  reward classifier from 20/100 labels
               instead of 200/1000, side check off   -> watch it get hacked
+  sb3-sac     stable-baselines3 SAC + the same demos -> is any of this bespoke
+              machinery earning its keep?
 
 Run them in parallel; each takes a few minutes.
 """
@@ -13,11 +15,14 @@ import argparse, os, subprocess, sys, csv
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PY = sys.executable
 
+# name -> (script, extra flags). Every entry writes runs/abl_<name>_eval.csv in
+# the same format, so summarise() does not care which script produced it.
 ABLATIONS = {
-    "full":      [],
-    "no-interv": ["--no-interventions"],
-    "oracle":    ["--oracle-reward"],
-    "few-labels": ["--small-labels", "--no-side-check"],
+    "full":       ("03_train_rl.py", []),
+    "no-interv":  ("03_train_rl.py", ["--no-interventions"]),
+    "oracle":     ("03_train_rl.py", ["--oracle-reward"]),
+    "few-labels": ("03_train_rl.py", ["--small-labels", "--no-side-check"]),
+    "sb3-sac":    ("03b_train_sb3.py", []),
 }
 
 
@@ -44,6 +49,9 @@ def summarise(steps):
         print(f"{name:<12} {t:>13.2f} {c:>16.2f} {c-t:>+6.2f}   {curve}")
     print("\n  'true success' is the honest metric. 'classifier says' is what the")
     print("  agent was optimising. A gap between them is reward hacking.")
+    print("  sb3-sac gets the same env, reward, demos and eval protocol, plus")
+    print("  LayerNorm critics and a 10-critic ensemble. What it cannot have is")
+    print("  subsample-min, symmetric sampling, a grasp critic or interventions.")
 
 
 if __name__ == "__main__":
@@ -55,8 +63,8 @@ if __name__ == "__main__":
     if not args.summarise_only:
         procs = []
         env = dict(os.environ, OMP_NUM_THREADS="2", MKL_NUM_THREADS="2")
-        for name, flags in ABLATIONS.items():
-            cmd = [PY, "-u", os.path.join(ROOT, "scripts", "03_train_rl.py"),
+        for name, (script, flags) in ABLATIONS.items():
+            cmd = [PY, "-u", os.path.join(ROOT, "scripts", script),
                    "--steps", str(args.steps), "--tag", f"abl_{name}"] + flags
             log = open(os.path.join(ROOT, "runs", f"abl_{name}.log"), "w")
             procs.append((name, subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, env=env)))

@@ -40,11 +40,18 @@ from .networks import EnsembleCritic, TanhGaussianActor, GraspCritic
 class RLPDAgent:
     def __init__(self, obs_dim, act_dim, n_grasp=3, *, hidden=256,
                  ensemble=10, subsample=2, discount=0.97, tau=0.005,
-                 lr=3e-4, utd=2, target_entropy=None, grasp_penalty=0.02, alpha_init=0.05,
+                 lr=3e-4, utd=2, policy_delay=None, target_entropy=None,
+                 grasp_penalty=0.02, alpha_init=0.05,
                  bc_weight=0.0, device="cpu", seed=0):
         torch.manual_seed(seed)
         self.device = torch.device(device)
         self.discount, self.tau, self.utd = discount, tau, utd
+        # How many critic updates pass between actor updates. RLPD does one
+        # actor update per `utd` critic updates, which is the default here.
+        # stable-baselines3 instead updates the actor on EVERY gradient step,
+        # so at the same UTD it performs `utd` times as many actor updates -
+        # set policy_delay=1 to match it.
+        self.policy_delay = utd if policy_delay is None else policy_delay
         self.subsample, self.ensemble = subsample, ensemble
         self.grasp_penalty, self.bc_weight = grasp_penalty, bc_weight
 
@@ -89,11 +96,12 @@ class RLPDAgent:
     def update(self, sample_fn, batch_size=128):
         """One RLPD step: `utd` critic updates, then one actor/alpha/grasp update."""
         info = {}
-        for _ in range(self.utd):
+        for k in range(self.utd):
             info.update(self._update_critic(self._to_torch(sample_fn(batch_size))))
-        b = self._to_torch(sample_fn(batch_size))
-        info.update(self._update_actor_and_alpha(b))
-        info.update(self._update_grasp(b))
+            if (k + 1) % self.policy_delay == 0:
+                b = self._to_torch(sample_fn(batch_size))
+                info.update(self._update_actor_and_alpha(b))
+                info.update(self._update_grasp(b))
         self._soft_update(self.critic, self.critic_targ)
         self._soft_update(self.grasp, self.grasp_targ)
         return info

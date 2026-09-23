@@ -32,6 +32,9 @@ if __name__ == "__main__":
     ap.add_argument("--demos", type=int, default=20)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--utd", type=int, default=4)
+    ap.add_argument("--policy-delay", type=int, default=None,
+                    help="critic updates between actor updates; default=utd "
+                         "(RLPD). Set 1 to match stable-baselines3.")
     ap.add_argument("--tau", type=float, default=None)
     ap.add_argument("--bc-weight", type=float, default=0.0)
     ap.add_argument("--no-side-check", action="store_true")
@@ -52,7 +55,8 @@ if __name__ == "__main__":
                         utd=args.utd, use_interventions=not args.no_interventions,
                         intervention_kwargs={"p0": args.intervene_p0,
                                              "half_life_eps": args.intervene_halflife},
-                        agent_kwargs={"bc_weight": args.bc_weight})
+                        agent_kwargs={"bc_weight": args.bc_weight,
+                                      "policy_delay": args.policy_delay})
 
     os.makedirs(os.path.join(ROOT, "runs"), exist_ok=True)
     out = os.path.join(ROOT, "runs", f"{args.tag}.csv")
